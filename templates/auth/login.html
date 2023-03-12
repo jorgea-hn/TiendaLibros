@@ -8,6 +8,7 @@
 
 {% block body%}
 <form class="form-signin" action="/login" method="POST">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
     <img class="mb-4" src="https://www3.gobiernodecanarias.org/comercio/consumecanarias/wp-content/uploads/2021/05/logopordefecto_color-libros_musica_fotografia.png" alt="" width="72" height="57">
     <h1 class="h3 mb-3 fw-normal">Inicio de sesi&oacute;n</h1>
 
