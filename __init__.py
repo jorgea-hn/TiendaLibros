@@ -24,6 +24,24 @@ def login():
     else:
         return render_template('auth/login.html')
 
+@app.route("/libros")
+def listar_libros():
+    try:
+        cursor=db.connection.cursor()
+        # sql = "SELECT isbn, titulo, anoedicion FROM libro ORDER BY titulo ASC"
+        sql = "SELECT LIB.isbn, LIB.titulo, LIB.anoedicion, LIB.precio, AUT.apellidos, AUT.nombres FROM libro LIB  JOIN autor AUT ON LIB.autor_id = AUT.id ORDER BY LIB.titulo ASC"
+        cursor.execute(sql)
+        data=cursor.fetchall()
+        data={
+            "libros":data
+        }
+        #print(data)
+        #return "OK. Numero de libros: {0}".format(len(data))
+        return render_template("listado_libros.html", data=data)
+    except Exception as ex:
+        raise Exception(ex)
+
+
 def pagina_no_encontrada(error):
     return render_template("errores/404.html"),404
 
