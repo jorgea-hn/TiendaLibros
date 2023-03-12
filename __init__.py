@@ -3,6 +3,7 @@ from flask_mysqldb import MySQL
 from flask_wtf.csrf import CSRFProtect
 
 
+
 from .models.ModeloLibro import ModeloLibro
 
 app=Flask(__name__)
@@ -13,6 +14,8 @@ db=MySQL(app)
 @app.route("/")
 def index():
     return render_template('index.html')
+
+
 
 @app.route("/login", methods=["GET","POST"])
 def login():
